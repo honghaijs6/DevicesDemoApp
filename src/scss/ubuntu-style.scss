@@ -1,0 +1,148 @@
+
+/* BUTTON */
+.btn-normal{
+  background: #F5F6F7;  border: 1px solid rgba(0,0,0,0.1) ;  color: #666; padding-left: 10px; padding-right: 10px;
+}
+
+.btn-ubuntu{ background: #7696a6;  border: 1px solid rgba(0,0,0,0.1) ;  color: #fff; padding-left: 10px; padding-right: 10px;}
+.btn-ubuntu:hover, .btn-ubuntu-active{ background: #40525b; color: #fff !important; border: 1px solid rgba(0,0,0,0.1)}
+
+
+
+.btn-ubuntu-ok{ background: #CF9E49;  border: 1px solid rgba(0,0,0,0.1); color: #fff; }
+.btn-ubuntu-ok:hover{ background-color: #b7852f; border: 1px solid rgba(0,0,0,0.1); color: #fff}
+
+.btn-ubuntu-select{ background: #F5F6F7;  border: 1px solid rgba(0,0,0,0.1) ;  color: #555555}
+.btn-ubuntu-select:hover, .btn-ubuntu-select-active{ background: #18A689; color: #fff; border: 1px solid rgba(0,0,0,0.1)}
+
+
+
+/*VIEW MODAL FORM*/
+.view-modal-body{
+    padding: 20px 10px
+}
+
+
+
+/* E-MAIL APP  : LEFT SIZE : RIGHT SIZE  */
+
+.ubuntu-app {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.2);
+
+    border-bottom: 0px;
+    overflow-x: hidden;
+}
+
+.ubuntu-app .need-scroll{
+  height: 83vh + 6.4 ; overflow-y:auto;
+}
+
+/* LEFT SIDE APP*/
+.ubuntu-app nav {
+    -ms-flex: 0 0 300px;
+    flex: 0 0 260px;
+    padding: 1rem;
+    border-right: 1px solid #c8ced3;
+    height: 94vh  ; overflow-y:auto;
+    background: #f0f0f0; //F0F0F0
+}
+
+.ubuntu-app nav .btn-block {
+    margin-bottom: 15px
+}
+
+.ubuntu-app nav .nav {
+    -ms-flex-direction: column;
+    flex-direction: column
+}
+
+.ubuntu-app nav .nav-item {
+    position: relative;
+    padding: 0px 0px 0px 0px;
+    font-size: 14px;
+    margin-bottom: 1px;
+    font: 15.2px "Roboto", sans-serif !important;
+
+}
+.ubuntu-app nav .nav-item:hover,.ubuntu-app nav .nav-item.active {
+    position: relative;
+    background: #18A689;
+    color: #ffffff
+
+}
+.ubuntu-app nav .nav-item span:hover,.ubuntu-app nav .nav-item.active a{ color: #fff}
+
+.ubuntu-app nav .nav-link {
+    color: #23282c;
+    border-bottom: 0px solid #c8ced3;
+
+}
+.ubuntu-app nav .nav-link:hover{ cursor: pointer;}
+
+
+.ubuntu-app nav .nav-link .option {
+    float: right;
+
+    margin-left: 40px
+}
+
+/* END LEFT SIDE A*/
+.ubuntu-app main {
+    -ms-flex: 1;
+    flex: 1;
+    min-width: 0;
+    position:relative;
+
+}
+
+
+.ubuntu-app main .toolbar {
+    padding-bottom: 0rem;
+    border-bottom: 0px solid #c8ced3;
+    padding: 0rem;
+    padding-top: 1rem;
+    padding-left: 1rem;
+}
+
+.ubuntu-app main .detail{
+  padding: 1rem;
+}
+
+.ubuntu-app main .footer{
+  padding: 5px 10px;
+  background: #eee;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  position: absolute; bottom: 0px;
+  width: 100%;
+
+}
+
+
+
+@media(max-width:767.98px) {
+    .ubuntu-app {
+        -ms-flex-direction: column;
+        flex-direction: column
+    }
+    .ubuntu-app nav {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%
+    }
+}
+
+@media(max-width:575.98px) {
+    .ubuntu-app .message .header {
+        -ms-flex-flow: row wrap;
+        flex-flow: row wrap
+    }
+    .ubuntu-app .message .header .date {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%
+    }
+}
+/* END EMAIL APP*/
