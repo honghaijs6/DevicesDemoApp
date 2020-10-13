@@ -14,7 +14,7 @@ const Header = (props)=>{
       paddingLeft:20
     }}>
 
-        SUỐI TIÊN TICKET BOX
+        PushAPI Demo TICKET BOX
 
     </div>
   )

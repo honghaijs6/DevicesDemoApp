@@ -4,7 +4,11 @@ import React, { Component } from 'react';
 function LeftSide(props){
 
   return(
-    <nav>
+    <nav style={{
+      display:'flex',
+      justifyContent:'space-between',
+      flexDirection:'column'
+    }}>
       <ul style={{
         }} className="nav">
 
@@ -26,6 +30,9 @@ function LeftSide(props){
           }
 
       </ul>
+      <div>
+        © <span style={{ fontSize:12, fontWeight:'500'}}>VIKHANG</span> 2020 with <span style={{ fontSize:20, color:'#18A689'}}>♥</span>
+      </div>
     </nav>
   )
 }

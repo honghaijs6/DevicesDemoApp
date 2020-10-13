@@ -31,8 +31,6 @@ class PushSDKContent extends React.Component {
         {icon:'', code:'devicePage',name:'Access Devices'},
         {icon:'', code:'deviceCommandPage',name:'Device Commands'},
         {icon:'', code:'realtimePage',name:'Realtime'},
-
-        
       ]
     }
 
@@ -62,58 +60,61 @@ class PushSDKContent extends React.Component {
   render() {
     return (
       <div className="animated fadeIn">
-        <div className="ubuntu-app " style={{border:0,height: '89vh'}}>
-        <main>
-          <BenExplorer style={{
-            border:0,
-            height: '89vh',
-
-          }} onLeftSideChange={ this._onNavChange } data={this.state.navData} >
-
-            <div style={{
-              backgroundColor: '#F0F3F5',
-              height: 44,
-              lineHeight: '44px',
-              paddingLeft: 15,
-              borderBottom:'1px solid #ddd'
-            }}>
-              <div className="pull-left">
-                {
-                  this.state.navData.map((item,index)=>{
-                    if(item.code===this.state.onTab){
-                      return(
-                        <span key={index} style={{
-                            fontSize: 15,
-                            color:'#18A689',
-                            fontWeight: 500
-                          }}> { item.name } </span>
-                      )
-                    }
-
-
-                  })
-                }
-              </div>
-              <div className="pull-right" style={{paddingRight: 15}} >
-                
-              </div>
-            </div>
-
-
-            <div style={{padding: 15}}>
-                
-              <IntroPage {...this.state } />
-              <DevicePage {...this.state}  />
-              <TutorialPage {...this.state}/>
-              <DeviceCommandPage {...this.state} />
-              <SettingDevicePage {...this.state} />
-              <RealtimePage {...this.state} />
+        <div className="ubuntu-app " style={{border:0,height: 'auto'}}>
+          <main>
+            <BenExplorer style={{
+              border:0,
+              height: '1115px', //'auto'//'89vh',
+              overflowY:'hidden'
               
               
-            </div>
 
-          </BenExplorer>
-        </main>
+            }} onLeftSideChange={ this._onNavChange } data={this.state.navData} >
+
+              <div style={{
+                backgroundColor: '#F0F3F5',
+                height: 44,
+                lineHeight: '44px',
+                paddingLeft: 15,
+                borderBottom:'1px solid #ddd'
+              }}>
+                <div className="pull-left">
+                  {
+                    this.state.navData.map((item,index)=>{
+                      if(item.code===this.state.onTab){
+                        return(
+                          <span key={index} style={{
+                              fontSize: 15,
+                              color:'#18A689',
+                              fontWeight: 500
+                            }}> { item.name } </span>
+                        )
+                      }
+
+
+                    })
+                  }
+                </div>
+                <div className="pull-right" style={{paddingRight: 15}} >
+                  
+                </div>
+              </div>
+
+
+              <div style={{padding: 15}}>
+                  
+                <IntroPage {...this.state } />
+                <DevicePage {...this.state}  />
+                <TutorialPage {...this.state}/>
+                <DeviceCommandPage {...this.state} />
+                <SettingDevicePage {...this.state} />
+                <RealtimePage {...this.state} />
+                
+                
+              </div>
+
+            </BenExplorer>
+          </main>
         </div>
       </div>
     );

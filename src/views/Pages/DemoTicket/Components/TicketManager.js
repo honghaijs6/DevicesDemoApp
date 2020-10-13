@@ -33,7 +33,7 @@ class TicketManager extends React.Component {
               {/* TAB ORDER */}
               <div className={  `tab-pane  ${ this.state.onTab==='device'?'active':'' } ` }>
                   <Device />
-              </div>
+              </div> 
 
               <div className={  `tab-pane  ${ this.state.onTab==='ticket'?'active':'' } ` }>
                   <Ticket />

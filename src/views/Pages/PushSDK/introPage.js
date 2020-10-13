@@ -32,11 +32,11 @@ export default class IntroPage extends React.Component {
             <p> Tất cả web service hiện tại đều bắt đầu bằng đường dẫn bên dưới, gọi tắt là <span className="txt-red">BASE_URL</span>:  </p>
 
             <br></br>
-            <p className="txt-green"> http://115.78.5.75:3333/pushapi  </p>
+            <p className="txt-green"> http://27.74.250.26:3333/pushapi  </p>
             <br></br>
             <p>
                 Khi đề cập đến các web service trong phần này, chúng tôi sẽ không kèm theo BASE_URL và bạn mặc định hiểu là khi truy vấn sẽ nối thêm chuỗi BASE_URL phía trước đường dẫn cụ thể của web service, <br></br>
-                ví dụ: /realEvent sẽ là http://115.78.5.75:3333/pushapi/realEvent
+                ví dụ: /realEvent sẽ là http://27.74.250.26:3333/pushapi/realEvent
             </p>
             <br></br>
             <br></br>

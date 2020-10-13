@@ -36,7 +36,7 @@ export default class SettingDevicePage extends React.Component {
               <p>
                 username: admin <br></br>
                 password:admin <br></br>
-                trỏ về Push Cloud : http://115.78.5.75 <br></br>
+                trỏ về Push Cloud : http://27.74.250.26 <br></br>
                 Port : 8080 
 
               </p>

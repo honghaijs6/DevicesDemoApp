@@ -16,6 +16,9 @@ const Page500 = React.lazy(() => import('./views/Pages/Page500'));
 
 const DemoTicket = React.lazy(()=> import('./views/Pages/DemoTicket') ) ;
 
+const PushSDKDemo = React.lazy(()=>(import('./views/Pages/PushSDK'))) ;
+
+
 
 
 class App extends Component {
@@ -31,10 +34,11 @@ class App extends Component {
               <Route exact path="/500" name="Page 500" render={props => <Page500 {...props}/>} />
 
               {/* DEMO TICKET FIRST */}
-              <Route path="/" name="Home" render={props => <DemoTicket {...props}/>} />
 
+              <Route path="/demo" name="Home" render={props => <DemoTicket {...props}/>} />
+              <Route path="/pushsdk" name="PushSDK" render={props => <PushSDKDemo {...props}/>} /> 
 
-              {/*<Route path="/" name="Home" render={props => <DefaultLayout {...props}/>} />*/}
+              <Route path="/" name="Home" render={props => <DefaultLayout {...props}/>} />
 
 
 
