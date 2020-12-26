@@ -10,7 +10,7 @@ import {  ButtonGroup, Button } from 'reactstrap';
 import { BenGrid } from '../../../../../components/BenGrid2';
 import BenMessage from '../../../../../components/BenMessage';
 import preLoad from '../../../../../hook/before/preload';
-
+ 
 
 
 
@@ -27,7 +27,7 @@ import ButtonImportCode2Device from '../../../../../components/ButtonImportCode2
 
 
 const MODE = 'devices';
-
+const TIMEOUT = 100000 ; 
 
 
 class Devices extends React.Component {
@@ -122,7 +122,7 @@ class Devices extends React.Component {
       const postData = { sn:sn,cmd:cmd } ;
       const url = server.base()+'/commands';
 
-      axios.post(url,postData,{ timeout:10000}).then((res)=>{
+      axios.post(url,postData,{ timeout:TIMEOUT}).then((res)=>{
 
         resolve(res) ;
 
@@ -143,7 +143,7 @@ class Devices extends React.Component {
       const postData = { sn:sn,cmd:cmd } ;
       const url = server.base()+'/commands';
 
-      axios.post(url,postData,{ timeout:10000}).then((res)=>{
+      axios.post(url,postData,{ timeout:TIMEOUT}).then((res)=>{
 
         resolve(res) ;
 
@@ -159,8 +159,8 @@ class Devices extends React.Component {
   async _detectDeviceStatus(){
 
 
-    for(let i=0; i< this.grid.rowData.length; i++){
-      const item = this.grid.rowData[i];
+    await Promise.all(this.grid.rowData.map(async(item)=>{
+
       const res  =  await this._getDeviceStatus(item.sn) ;
 
       if(JSON.stringify(res).includes("Error")){
@@ -182,24 +182,16 @@ class Devices extends React.Component {
         });
       }
 
-
-    }
-
-    // REFRESH APP
-    this.setState({ status:'success'},()=>{
-        // DETECT USER ON DEVICE
-        this._detectDeviceUser();
-        this._refresh() ;
-
-
-    })
+    }))
+    
+    
 
   }
 
   async _detectDeviceUser(){
 
-    for(let i=0; i< this.grid.rowData.length; i++){
-      const item = this.grid.rowData[i];
+    await Promise.all(this.grid.rowData.map(async(item)=>{
+
       const res  =  await this._getCountUser(item.sn) ;
 
 
@@ -222,9 +214,8 @@ class Devices extends React.Component {
         });
 
       }
-
-    }
-
+    }));
+    
 
     // REFRESH APP
     this.setState({ status:'success'},()=>{
@@ -237,7 +228,7 @@ class Devices extends React.Component {
   _listDevice(){
 
     const url = server.base()+'/devices?max='+this.state.max+'&offset='+this.state.offset ;
-    axios.get(url).then((res)=>{
+    axios.get(url).then(async(res)=>{
 
       const data = res.data;
       // FORMAT DATA FIRST
@@ -252,16 +243,18 @@ class Devices extends React.Component {
       let paginate = Object.assign({}, this.state.paginate) ;
       paginate.total = data.count ;
 
-
+      
       this.setState({
         status:data.name,
         paginate
-      },()=>{
+      },async()=>{
 
         this._refresh();
 
-        this._detectDeviceStatus() ;
+        await this._detectDeviceStatus() ;
+        await this._detectDeviceUser();
 
+        
       });
 
     })
@@ -298,21 +291,23 @@ class Devices extends React.Component {
       if(json){
 
         const postData = {
-          cmd:json.cmd,
+          cmd:json.cmd.replace(/\t/g,'-'),
           sn:json.sn
         } ;
 
         const url = server.base()+'/commands';
 
         preLoad('loading');
-        axios.post(url,postData,{ timeout:30000}).then((res)=>{
+        axios.post(url,postData,{ timeout:30000}).then(async(res)=>{
 
 
-           toast.info('Run : '+json.sn);
+           toast.info('Run : '+json.sn); 
            preLoad('stop');
 
 
            document.querySelector('#data-response').innerHTML = JSON.stringify(res.data, undefined, 4) ;
+
+           await this._detectDeviceUser();
 
         }).catch((err)=>{
           preLoad("stop") ;
@@ -539,6 +534,7 @@ class Devices extends React.Component {
                         columns={ ['type','gate_no','type_no','pin','cardno'] }
                         sn={ this.state.curInfo['sn'] }
                         onComplete={()=>{ this._onCompleteUpload() }}
+                        onClose={()=>{ this._refresh() }}
                       />
 
                       <Button className="btn-normal mr-5" onClick={ this._setTimeZoneDefaut }>

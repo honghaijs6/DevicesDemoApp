@@ -15,7 +15,7 @@ class TicketManager extends React.Component {
       onTab:'device',
       tabs:[
             { icon:'fa fa-plug',code:'device',name:'Thiết bị' },
-            { icon:'fa fa-ticket',code:'ticket',name:'Trung tâm thẻ' },
+            //{ icon:'fa fa-ticket',code:'ticket',name:'Trung tâm thẻ' },
             { icon:'fa fa-pie-chart',code:'report',name:'Báo cáo' }
       ],
 
@@ -32,12 +32,14 @@ class TicketManager extends React.Component {
 
               {/* TAB ORDER */}
               <div className={  `tab-pane  ${ this.state.onTab==='device'?'active':'' } ` }>
-                  <Device />
+                  <Device /> 
               </div>
-
-              <div className={  `tab-pane  ${ this.state.onTab==='ticket'?'active':'' } ` }>
+ 
+              
+              {/*<div className={  `tab-pane  ${ this.state.onTab==='ticket'?'active':'' } ` }>
                   <Ticket />
-              </div>
+              </div>*/}
+
 
               <div className={  `tab-pane  ${ this.state.onTab==='report'?'active':'' } ` }>
                   report

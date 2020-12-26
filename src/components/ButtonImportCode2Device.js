@@ -53,6 +53,7 @@ class ButtonImportCode2Device extends Component {
         super(props);
 
         this.state = {
+            _id:0 ,
             status:'',
             columns:props.columns,
             isOpen:false,
@@ -151,11 +152,14 @@ class ButtonImportCode2Device extends Component {
     */
     _uploadNow(){
 
-
+        
       if(this.props.sn !==''){
+        
+        
+        const max = 500 ;
         if(this.grid.rowData.length > 0){
 
-          if(this.grid.rowData.length <= 100){
+          if(this.grid.rowData.length <= max){
 
               const url = server.base()+'/live-code/AddMulti?sn='+this.props.sn ;
               let data = Object.assign([],this.grid.rowData) ;
@@ -203,7 +207,7 @@ class ButtonImportCode2Device extends Component {
 
           }else{
             // OVER 500
-            const max = 100 ;
+            
             const count = this.grid.rowData.length / max ;
             if(this._index < count){
 
@@ -298,6 +302,16 @@ class ButtonImportCode2Device extends Component {
 
     }
 
+    
+
+    onToggle = ()=>{
+
+        this.setState({isOpen:false, _id:this.state._id + 1},()=>{
+            
+            this.props.onClose(); 
+        })
+        
+    }
 
     render() {
         return (
@@ -306,7 +320,7 @@ class ButtonImportCode2Device extends Component {
                     width={this.props.width}
                     name={"Nạp code lên thiết bị ("+ this.grid.rowData.length+')'}
                     isOpen={ this.state.isOpen }
-                    onToggle={(isOpen)=>{  this.setState({isOpen:isOpen})  }}
+                    onToggle={ this.onToggle }
                 >
                     <div className="view-modal-body">
                         <BenTable
@@ -342,9 +356,13 @@ class ButtonImportCode2Device extends Component {
 
                 <i className={this.props.icon}></i> { this.props.title }
                 <Input
+                    id={'file-'+this.state._id}
                     accept=".xlsx"
                     disabled={ this.props.sn ==='' ? true : false }
-                    style={{width: '100%',height: 50,position: 'absolute', top:0, left: 15, opacity: 0}} id="photo" type="file" onChange={ (e)=> { this._handleFile(e) } } >
+                    style={{width: '100%',height: 50,position: 'absolute', top:0, left: 15, opacity: 0}}  type="file" 
+                    onChange={ (e)=> { this._handleFile(e) } } 
+
+                >
                 </Input>
             </Button>
         );

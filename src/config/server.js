@@ -1,7 +1,7 @@
 
 
 const server = {
-  host: 'http://localhost', //"http://115.78.5.75",//"http://localhost",//"http://115.78.5.75",
+  host: 'http://27.74.250.26', //"http://115.78.5.75",//"http://localhost",//"http://115.78.5.75",
   port:8080,
 
   url:'',
